@@ -11,7 +11,8 @@ const paths = {
   nodePath: "node_modules",
   masterCss: "master-templates/css",
   masterJs: "master-templates/js",
-  masterImg: "master-templates/img"
+  masterImg: "master-templates/img",
+  masterFont: "master-templates/fonts"
 };
 
 gulp.task("nunjucks", function() {
@@ -26,7 +27,7 @@ gulp.task("nunjucks", function() {
         })
       )
       // output files in app folder
-      .pipe(gulp.dest("."))
+      .pipe(gulp.dest("dist"))
   );
 });
 
@@ -41,7 +42,7 @@ gulp.task("scripts", () => {
     ])
     .pipe(uglify().on("error", err => console.log("scripts error", err)))
     .pipe(concat("scripts.js"))
-    .pipe(gulp.dest("js"));
+    .pipe(gulp.dest("dist/js"));
   // .pipe(rename({ suffix: ".min" }))
   // .pipe(gulp.dest("js"));
 });
@@ -61,18 +62,21 @@ gulp.task("styles", () => {
       })
     )
     .pipe(concat("styles.css"))
-    .pipe(gulp.dest("css"));
+    .pipe(gulp.dest("dist/css"));
 });
 
 gulp.task("images", () =>
   gulp
     .src(paths.masterImg + "/*.*")
     .pipe(imagemin())
-    .pipe(gulp.dest("img"))
+    .pipe(gulp.dest("dist/img"))
 );
 
-gulp.task("watch", () => {
-  gulp.watch("./pages", ["nunjucks", "scripts", "styles", "images"]);
-});
+gulp.task("fonts", () =>
+  gulp
+    .src(paths.masterFont + "/*.*")
+    .pipe(imagemin())
+    .pipe(gulp.dest("dist/fonts"))
+);
 
-gulp.task("default", ["nunjucks", "scripts", "styles", "images", "watch"]);
+gulp.task("default", ["nunjucks", "scripts", "styles", "images", "fonts"]);
