@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "homepage": "https://github.com/attanza/skema",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-imagemin": "^4.1.0",
@@ -18,5 +19,8 @@
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.1",
     "gulp-uglify": "^3.0.1"
+  },
+  "dependencies": {
+    "gh-pages": "^2.0.0"
   }
 }

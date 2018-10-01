@@ -79,4 +79,7 @@ gulp.task("fonts", () =>
     .pipe(gulp.dest("dist/fonts"))
 );
 
-gulp.task("default", ["nunjucks", "scripts", "styles", "images", "fonts"]);
+gulp.task(
+  "default",
+  gulp.parallel("nunjucks", "scripts", "styles", "images", "fonts")
+);
